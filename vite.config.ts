@@ -1,13 +1,15 @@
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 
-export default defineConfig(() => ({
+const rootDir = dirname(fileURLToPath(import.meta.url));
+
+export default defineConfig({
   plugins: [react(), tailwindcss()],
-  resolve: { alias: {'@': path.resolve(__dirname, '.')} },
+  resolve: { alias: { '@': resolve(rootDir, '.') } },
   server: {
     hmr: process.env.DISABLE_HMR !== 'true',
-    watch: process.env.DISABLE_HMR === 'true' ? null : {},
   },
-}));
+});
