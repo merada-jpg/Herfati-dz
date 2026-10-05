@@ -6,9 +6,14 @@ const port = Number(process.env.PORT ?? 8787);
 const supabaseUrl = process.env.SUPABASE_URL?.replace(/\/$/, '');
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 const allowedOrigin = process.env.ALLOWED_ORIGIN ?? 'http://localhost:3000';
+const rateWindowMs = Number(process.env.RATE_LIMIT_WINDOW_MS ?? 60000);
+const rateMax = Number(process.env.RATE_LIMIT_MAX ?? 30);
+const buckets = new Map<string, { count: number; reset: number }>();
 
 app.disable('x-powered-by');
 app.use(express.json({ limit: '32kb' }));
+app.use((_req, res, next) => { res.setHeader('X-Content-Type-Options','nosniff'); res.setHeader('X-Frame-Options','DENY'); res.setHeader('Referrer-Policy','no-referrer'); next(); });
+app.use((req, res, next) => { const key = req.ip ?? 'unknown'; const now = Date.now(); const b = buckets.get(key); if (!b || now >= b.reset) buckets.set(key,{count:1,reset:now+rateWindowMs}); else { b.count++; if (b.count > rateMax) return res.status(429).json({error:'Too many requests. Try again later.'}); } next(); });
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
   res.setHeader('Vary', 'Origin');
