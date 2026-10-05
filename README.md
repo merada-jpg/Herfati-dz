@@ -1,46 +1,39 @@
-# Herfati DZ
+# Herfati DZ — حِرفتي الجزائر
 
-**حرفتي DZ** — منصة دليل وخدمات للحرفيين والمهنيين في الجزائر.
+منصة دليل وخدمات للحرفيين والمهنيين في الجزائر، بواجهة عربية/فرنسية ودعم الولايات والحرف والأسعار الاسترشادية والحجز والتقييمات.
 
-## الحالة الحالية
+## النسخة المنشورة
 
-هذا المستودع هو نقطة الانطلاق الرسمية لنسخة **Production Hardening**. تم تنفيذ مراجعة REDTEAM/OODA وإزالة عدد من إشارات الثقة المضللة من الواجهة والنماذج الأولية.
+تم نشر نسخة Production-Hardened Frontend من أفضل نسخة عملنا عليها، مع إزالة إشارات الثقة المضللة من النموذج الأولي.
 
-> **مهم:** التطبيق الحالي ليس Marketplace إنتاجيًا كاملًا بعد. لا توجد بعد طبقة خادم مكتملة للهوية، الصلاحيات، التحقق، قاعدة البيانات والحجوزات والإشعارات.
+### إصلاحات حرجة
 
-## ما تم إصلاحه
+- التحقق CAM والتأمين لا يمنحان تلقائياً من واجهة التسجيل.
+- الحساب الجديد يبدأ غير موثّق.
+- الحجز يبدأ pending ولا يظهر كحجز مؤكد قبل وجود سيرفر حقيقي.
+- بيانات الحجز الشخصية تبقى في الذاكرة ولا تحفظ في localStorage.
+- التقييمات الجديدة لا تُوسم تلقائياً كحجوزات موثقة.
+- بيانات الحرفيين التجريبية لا تحتوي على شارات توثيق مصطنعة.
+- صور runtime موجودة في public/images بمسارات ثابتة تعمل مع Vite.
+- أضيفت واجهة Red Team توضّح حدود النسخة الحالية.
 
-- عدم منح التحقق أو التأمين تلقائيًا من واجهة العميل.
-- عدم إنشاء تقييم موثّق تلقائيًا.
-- الحجز يبدأ كـ `pending` بدل `confirmed`.
-- عدم تخزين بيانات الحجز الشخصية في `localStorage`.
-- تنظيف ادعاءات التسويق غير القابلة للإثبات.
-- تصحيح مسارات الصور لتعمل مع Vite.
-- إضافة تحقق آمن للبيانات المقروءة من التخزين.
-- إضافة CI أساسي لـ lint/build.
-- إضافة سياسة أمنية ومصفوفة Roadmap عبر GitHub Issues.
+## تنبيه إنتاجي
 
-## بوابة الإنتاج
-
-قبل إعلان المنصة Production، يجب إغلاق عناصر P0/P1 في GitHub، وبالأخص:
-
-1. Auth + RBAC/ABAC.
+هذه النسخة ليست Marketplace إنتاجياً كاملاً بعد. قبل استقبال مستخدمين حقيقيين يجب إضافة:
+1. Auth + RBAC/ABAC server-side.
 2. PostgreSQL + migrations + constraints.
-3. Server-side artisan verification + audit trail.
+3. سيرفر تحقق للحرفيين مع audit trail.
 4. Booking state machine + idempotency + notifications.
-5. Verified reviews based on completed bookings.
-6. Privacy/retention/delete/export.
-7. Rate limiting + moderation + abuse prevention.
-8. Unit/integration/E2E/accessibility/security tests.
-9. Observability + alerts.
-10. Protected main branch with mandatory CI.
+5. مراجعات مرتبطة بحجوزات مكتملة فقط.
+6. سياسة خصوصية واحتفاظ وحذف/تصدير البيانات.
+7. Rate limiting وmoderation ومكافحة إساءة الاستخدام.
+8. اختبارات unit/integration/E2E/accessibility/security.
+9. Observability وalerts.
+10. حماية فرع الإنتاج وCI إلزامي.
 
-## الجودة
+## التشغيل
 
-الـ CI موجود في `.github/workflows/ci.yml`. لا نعتبر المشروع Production-ready إلا بعد نجاح الـ quality gates على فرع الإنتاج.
-
-## الوثائق
-
-- `REDTEAM-AUDIT.md` — نتائج التدقيق ونقاط الخطر.
-- `PRODUCTION-HARDENING.md` — الإصلاحات المنفذة وما بقي.
-- `SECURITY.md` — مبادئ الأمن والإبلاغ عن الثغرات.
+npm install
+npm run dev
+npm run lint
+npm run build
