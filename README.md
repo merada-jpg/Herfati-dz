@@ -37,7 +37,23 @@
 
 ## التشغيل
 
+### الواجهة
+
 npm install
 npm run dev
+
+### Backend
+
+انسخ `.env.example` إلى `.env` ثم ضع بيانات Supabase. بعد ذلك:
+
+npm run server
+
+أو أثناء التطوير:
+
+npm run dev:server
+
+### الجودة
+
 npm run lint
+npm run test
 npm run build
