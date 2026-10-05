@@ -57,3 +57,7 @@ npm run dev:server
 npm run lint
 npm run test
 npm run build
+
+
+## Production gate
+Before declaring production-ready, configure Supabase Auth and apply migrations 0001-0004, set VITE_SUPABASE_URL/VITE_SUPABASE_ANON_KEY and backend secrets, run CI successfully, and perform browser E2E smoke tests. The repository does not contain production secrets.
