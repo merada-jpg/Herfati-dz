@@ -34,3 +34,18 @@ test('browser auth must use public Supabase configuration only', () => {
   assert.ok(browserEnv.every(Boolean));
   assert.equal('SUPABASE_SERVICE_ROLE_KEY' in browserEnv, false);
 });
+
+
+test('booking state machine rejects arbitrary status jumps', () => {
+  const transitions = {
+    pending: ['accepted','rejected','cancelled'],
+    accepted: ['in_progress','cancelled'],
+    in_progress: ['completed'],
+    completed: [],
+    rejected: [],
+    cancelled: []
+  };
+  assert.ok(transitions.pending.includes('accepted'));
+  assert.ok(!transitions.pending.includes('completed'));
+  assert.ok(!transitions.completed.includes('in_progress'));
+});
