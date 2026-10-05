@@ -9,7 +9,7 @@ Returns only public artisan profiles. Verification badges and ratings must be se
 Authenticated customer only. Server sets `status=pending`; client cannot select `confirmed`, `completed`, or verification fields.
 
 ## POST /api/reviews
-Authenticated customer only. Server verifies ownership of a completed booking, prevents duplicate reviews, applies moderation status, and derives verified-booking state.
+Authenticated customer only. Server verifies ownership of a completed booking, prevents duplicate reviews, applies moderation status, and derives verified-booking state. Booking state changes use the database transition function; direct client status updates are revoked.
 
 ## POST /api/emergency-requests
 Authenticated customer only. Server validates the request, applies abuse/rate limits, creates an audit event, and dispatches notifications through trusted services.
@@ -20,5 +20,5 @@ Authenticated customer only. Server validates the request, applies abuse/rate li
 - Treat every request body as untrusted.
 - Authorize using the authenticated session on the server.
 - Recalculate trust signals server-side.
-- Rate-limit booking, review, registration and emergency endpoints.
+- Rate-limit booking, review, registration and emergency endpoints. The API applies a bounded in-memory IP limiter; production should use a shared limiter at the edge/gateway.
 - Do not persist booking PII in browser localStorage.
