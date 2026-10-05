@@ -1,0 +1,12 @@
+import { CraftCategory } from '../types';
+
+export const CRAFT_CATEGORIES: CraftCategory[] = [
+  {id:'plumbing',nameAr:'ترصيص صحي وتدفئة',nameFr:'Plomberie & Chauffage',iconName:'Wrench',descriptionAr:'تصليح تسريبات المياه، تركيب السخانات، المضخات، وشبكات الصرف الصحي',descriptionFr:'Réparation de fuites, chauffe-eau, tuyauterie et assainissement',averageRateHourDzd:1500,averageRateDayDzd:8000},
+  {id:'electrical',nameAr:'كهرباء معمارية وصناعية',nameFr:'Électricité Bâtiment',iconName:'Zap',descriptionAr:'تمديد الأسلاك، تركيب لوحات التوزيع، حل انقطاعات الكهرباء، وتركيب الإنارة',descriptionFr:'Câblage, tableaux électriques, pannes et éclairage architectural',averageRateHourDzd:1600,averageRateDayDzd:8500},
+  {id:'carpentry',nameAr:'نجارة خشب وألمنيوم',nameFr:'Menuiserie Bois & Alu',iconName:'Hammer',descriptionAr:'صناعة وتركيب الأبواب، النوافذ، المطابخ العصرية، وخزائن الحائط',descriptionFr:'Portes, fenêtres alu/bois, placards sur mesure et cuisines équipées',averageRateHourDzd:1800,averageRateDayDzd:9500},
+  {id:'painting',nameAr:'دهانة وديكور داخلي',nameFr:'Peinture & Décoration',iconName:'Paintbrush',descriptionAr:'طلاء الجدران والأسقف، تركيب ورق الجدران، الفينيل والديكورات الحديثة',descriptionFr:'Peinture moderne, enduits décoratifs, papiers peints et finitions',averageRateHourDzd:1200,averageRateDayDzd:7000},
+  {id:'masonry',nameAr:'بناء وتلبيس وبلاط',nameFr:'Maçonnerie & Carrelage',iconName:'BrickWall',descriptionAr:'تركيب البلاط والرخام، تلبيس الجدران، وترميم المباني والمنازل',descriptionFr:'Pose de carrelage, faïence, plâtrerie, crépissage et gros œuvre',averageRateHourDzd:1400,averageRateDayDzd:7500},
+  {id:'appliances',nameAr:'تبريد وتصليح كهرومنزلي',nameFr:'Froid & Électroménager',iconName:'Tv',descriptionAr:'صيانة المكيفات الهوائية، الثلاجات، الغسالات وأفران الغاز',descriptionFr:'Dépannage climatiseurs, réfrigérateurs, lave-linge et cuisinières',averageRateHourDzd:1500,averageRateDayDzd:8000},
+  {id:'locksmith',nameAr:'أقفال وحدادة فنية',nameFr:'Serrurerie & Ferronnerie',iconName:'Key',descriptionAr:'فتح الأقفال المستعصية، تركيب أبواب مصفحة، والحواجز الحديدية',descriptionFr:'Ouverture de serrures bloquées, blindage et grilles de protection',averageRateHourDzd:1700,averageRateDayDzd:9000},
+  {id:'traditional',nameAr:'حرف تقليدية وصناعات يدوية',nameFr:'Artisanat Traditionnel',iconName:'Sparkles',descriptionAr:'الفخار والخزف، النقش على النحاس، حياكة الزرابي والصناعات الجلدية',descriptionFr:'Poterie, dinanderie sur cuivre, tapis traditionnels et maroquinerie',averageRateHourDzd:2000,averageRateDayDzd:10000}
+];
