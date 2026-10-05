@@ -82,7 +82,7 @@ export interface BookingRequest {
   scheduledDate: string;
   preferredTime: string;
   description: string;
-  status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
+  status: 'pending' | 'accepted' | 'in_progress' | 'completed' | 'cancelled' | 'rejected';
   createdAt: string;
 }
 
