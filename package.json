@@ -13,7 +13,9 @@
     "test": "node --test",
     "server": "tsx server/index.ts",
     "dev:server": "tsx watch server/index.ts",
-    "start:server": "node --import tsx server/index.ts"
+    "start:server": "node --import tsx server/index.ts",
+    "mobile:sync": "npm run build && npx cap sync android",
+    "mobile:android": "npx cap open android"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
@@ -26,7 +28,9 @@
     "express": "^4.21.2",
     "dotenv": "^17.2.3",
     "motion": "^12.23.24",
-    "@supabase/supabase-js": "^2.58.0"
+    "@supabase/supabase-js": "^2.58.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/android": "^8.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
@@ -37,6 +41,7 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.21.0",
     "typescript": "^7.0.2",
-    "@types/express": "^4.17.21"
+    "@types/express": "^4.17.21",
+    "@capacitor/cli": "^8.0.0"
   }
 }
