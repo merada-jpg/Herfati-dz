@@ -10,7 +10,10 @@
     "clean": "rm -rf dist server.js",
     "lint": "npm run typecheck",
     "typecheck": "tsc --noEmit",
-    "test": "node --test"
+    "test": "node --test",
+    "server": "tsx server/index.ts",
+    "dev:server": "tsx watch server/index.ts",
+    "start:server": "node --import tsx server/index.ts"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
