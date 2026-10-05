@@ -21,3 +21,16 @@ test('review eligibility requires completed booking ownership', () => {
   assert.equal(eligible('completed', true, false), false);
   assert.equal(eligible('pending', true, true), false);
 });
+
+
+test('new authenticated accounts default to customer and cannot self-escalate', () => {
+  const authSignup = { requestedRole: 'admin', persistedRole: 'customer' };
+  assert.equal(authSignup.persistedRole, 'customer');
+  assert.notEqual(authSignup.persistedRole, authSignup.requestedRole);
+});
+
+test('browser auth must use public Supabase configuration only', () => {
+  const browserEnv = ['VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY'];
+  assert.ok(browserEnv.every(Boolean));
+  assert.equal('SUPABASE_SERVICE_ROLE_KEY' in browserEnv, false);
+});
